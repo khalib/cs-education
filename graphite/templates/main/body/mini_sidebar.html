@@ -1,0 +1,23 @@
+{% extends 'main/meta.html' %}
+
+{% block body %}
+    {% include 'main/navbar.html' %}
+
+    <div class="container page">
+        <div class="row">
+            <div id="sidebar" class="span2">
+                <div class="wrapper">
+                    {% block sidebar %}
+                    {% endblock sidebar %}
+                </div>
+            </div>
+
+            <div id="main" class="span10">
+                <div class="wrapper">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
