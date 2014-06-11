@@ -7,7 +7,7 @@ This codebase runs off of python virtualenv.
 
 <pre>
 # Get the source
-git clone git@github.com:khalib/graphite.git graphite
+git clone git@github.com:khalib/cs-education.git graphite
 
 # Create the virtual environment
 virtualenv ./graphite/
