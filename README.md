@@ -1,6 +1,6 @@
-graphite
-========
-Graphite on Django via Nodejs via Drupal
+Common Sense Education (Graphite)
+=================================
+Education/Graphite site on Django via Nodejs via Drupal
 
 ## Installation
 This codebase runs off of python virtualenv.
