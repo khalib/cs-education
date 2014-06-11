@@ -1,5 +1,5 @@
 from django.db import models
-from graphite.core.models import BaseModel
+from education.core.models import BaseModel
 
 class User(BaseModel):
     uid = models.IntegerField(null=False)

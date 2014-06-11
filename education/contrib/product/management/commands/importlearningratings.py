@@ -4,9 +4,9 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.core.files.base import ContentFile
-from graphite.core.utils import *
-from graphite.contrib.file.models import Image
-from graphite.contrib.product.models import *
+from education.core.utils import *
+from education.contrib.file.models import Image
+from education.contrib.product.models import *
 
 class Command(BaseCommand):
     args = '<count> <offset>'
@@ -26,8 +26,8 @@ class Command(BaseCommand):
         i = skip + 1
 
         # Setup MongoDB connection.
-        client = MongoClient(settings.GRAPHITE_MONGODB_HOST, settings.GRAPHITE_MONGODB_PORT)
-        db = client[settings.GRAPHITE_MONGODB_DATABASE]
+        client = MongoClient(settings.EDUCATION_MONGODB_HOST, settings.EDUCATION_MONGODB_PORT)
+        db = client[settings.EDUCATION_MONGODB_DATABASE]
 
         # Get and index review data.
         collection = db['node']
@@ -67,14 +67,14 @@ class Command(BaseCommand):
             i += 1
 
         """
-        product_list = urllib2.urlopen('%s?mac=%s' % (settings.GRAPHITE_REVIEW_DATA_LIST_URL % media_type, settings.GRAPHITE_MIGRATION_MAC_ID))
+        product_list = urllib2.urlopen('%s?mac=%s' % (settings.EDUCATION_REVIEW_DATA_LIST_URL % media_type, settings.EDUCATION_MIGRATION_MAC_ID))
         nid_list = json.loads(product_list.read())
 
         del nid_list[count:]
         del nid_list[0:skip]
 
         for nid in nid_list:
-            product_item = urllib2.urlopen('%s/%s?mac=%s' % (settings.GRAPHITE_REVIEW_DATA_ITEM_URL % media_type, nid, settings.GRAPHITE_MIGRATION_MAC_ID))
+            product_item = urllib2.urlopen('%s/%s?mac=%s' % (settings.EDUCATION_REVIEW_DATA_ITEM_URL % media_type, nid, settings.EDUCATION_MIGRATION_MAC_ID))
             product_data = json.loads(product_item.read())
 
             try:

@@ -1,6 +1,6 @@
 from django.db import models
-from graphite.core.models import BaseModel, ContentModel, NodeContentModel
-from graphite.contrib.file.models import Image
+from education.core.models import BaseModel, ContentModel, NodeContentModel
+from education.contrib.file.models import Image
 
 class Product(ContentModel):
     nid = models.IntegerField()

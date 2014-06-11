@@ -7,11 +7,11 @@ This codebase runs off of python virtualenv.
 
 <pre>
 # Get the source
-git clone git@github.com:khalib/cs-education.git graphite
+git clone git@github.com:khalib/cs-education.git education
 
 # Create the virtual environment
-virtualenv ./graphite/
-cd graphite
+virtualenv ./education/
+cd education
 
 # Source the activate settings.
 source bin/activate
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 Add this code to the top of the activate settings file in **bin/activate**:
 <pre>
-DJANGO_SETTINGS_MODULE="graphite.settings_local"
+DJANGO_SETTINGS_MODULE="education.settings_local"
 export DJANGO_SETTINGS_MODULE
 </pre>
 

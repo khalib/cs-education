@@ -1,4 +1,4 @@
-# Django settings for graphite project.
+# Django settings for education project.
 
 import os
 from django.conf import global_settings
@@ -17,7 +17,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'graphite_django',                      # Or path to database file if using sqlite3.
+        'NAME': 'education_django',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'csm',
         'PASSWORD': 'password',
@@ -108,10 +108,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'graphite.urls'
+ROOT_URLCONF = 'education.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'graphite.wsgi.application'
+WSGI_APPLICATION = 'education.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(ROOT_PATH, 'view'),
@@ -126,13 +126,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'graphite.contrib.page',
-    'graphite.contrib.user',
-    'graphite.contrib.product',
-    'graphite.contrib.file',
-    'graphite.contrib.review',
-    'graphite.contrib.userreview',
-    'graphite.contrib.comment',
+    'education.contrib.page',
+    'education.contrib.user',
+    'education.contrib.product',
+    'education.contrib.file',
+    'education.contrib.review',
+    'education.contrib.userreview',
+    'education.contrib.comment',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
