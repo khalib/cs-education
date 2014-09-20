@@ -2,10 +2,9 @@ import json
 from django.test import TestCase
 from education.core.utils import json_to_obj
 from education.libraries.cse.api import CSEAPI
-from education.libraries.cse.node import NodeObject
 from education.libraries.cse.user import User
-from education.libraries.cse.product import Product
-from education.libraries.cse.review import Review
+from education.libraries.cse.node.node import Node
+from education.libraries.cse.node import Product, Review, Flow, Blog, Board
 
 
 NODE_DATA = {
@@ -89,6 +88,29 @@ class CSEAPITest(TestCase):
         self.assertEquals(product.title, products[0].title)
         self.assertEquals(product.type, products[0].type)
 
+    def test_get_user_by_slug(self):
+        api = CSEAPI()
+
+        user = api.get_user_by_slug('users/root')
+        self.assertIsInstance(user, User)
+        self.assertIsInstance(user.id, int)
+
+    def test_get_nodes(self):
+        api = CSEAPI()
+
+        # Test various node types.
+        nodes = api.get_nodes('flow')
+        for node in nodes:
+            self.assertEquals(node.type, 'flow')
+
+        nodes = api.get_nodes('blog')
+        for node in nodes:
+            self.assertEquals(node.type, 'blog')
+
+        nodes = api.get_nodes('board')
+        for node in nodes:
+            self.assertEquals(node.type, 'board')
+
 
 class NodeTest(TestCase):
     def test_init(self):
@@ -109,13 +131,21 @@ class NodeTest(TestCase):
             }
         }
 
-        node = NodeObject(data)
+        node = Node(data)
         self.assertEquals(node.foo, 'bar')
         self.assertEquals(node.baz, 'bat')
         self.assertEquals(node.author.id, 123)
         self.assertEquals(node.author.first_name, 'John')
         self.assertEquals(node.author.last_name, 'Doe')
         self.assertEquals(node.nested.child.foobar, 'foo')
+
+    def test_instance(self):
+        # Test various instances.
+        node = Node.instance('flow', {})
+        self.assertIsInstance(node, Flow)
+
+        node = Node.instance('review', {})
+        self.assertIsInstance(node, Review)
 
 
 class UserTest(TestCase):

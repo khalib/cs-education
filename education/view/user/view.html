@@ -1,0 +1,92 @@
+{% extends 'main/body/full.html' %}
+
+{% block content %}
+  <h1>{{ user.display_name }}</h1>
+
+  <div><img src="{{ user.profile_picture }}" width="200"></div>
+
+  <div>{{ user.role_title }}</div>
+
+  {% if user.role_title_other %}
+    <div>{{ user.role_title_other }}</div>
+  {% endif %}
+
+  {% if user.teaching_since %}
+    <br />
+    <div>
+      <strong>Teaching Since:</strong> {{ user.teaching_since }}
+    </div>
+  {% endif %}
+
+  {% if user.grades|length > 0 %}
+    <br />
+    <div>
+      <strong>Grades:</strong>
+      {% for grade in user.grades %}
+        {{ grade.name }}{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if user.subjects|length > 0 %}
+    <br />
+    <div>
+      <strong>Subjects:</strong>
+      {% for subject in user.subjects %}
+        {{ subject.name }}{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if user.school.name %}
+    <br />
+    <div>
+      {{ user.school.name }}<br />
+      {{ user.school.city }}, {{ user.school.state }}
+    </div>
+  {% endif %}
+
+  <hr />
+  <div>
+    <h4>Bio</h4>
+    {{ user.bio|safe }}
+  </div>
+
+  {% if user.school_tech_profile %}
+    <div>
+      <h4>Tech Profile / Classroom Setup</h4>
+      {{ user.school_tech_profile }}
+    </div>
+  {% endif %}
+  <hr />
+
+  <div>
+    <h4>My Boards</h4>
+
+    <ul>
+      {% for board in boards %}
+        <li>
+          {{ board.title }}<br />
+          <em>{{ board.description }}</em>
+        </li>
+      {% empty %}
+        <li>No Boards Yet</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div>
+    <h4>My App Flows</h4>
+
+    <ul>
+      {% for flow in flows %}
+        <li>
+          {{ flow.title }}<br />
+          <em>{{ flow.description }}</em>
+        </li>
+      {% empty %}
+        <li>No App Flows Yet</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock content %}

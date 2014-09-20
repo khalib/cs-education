@@ -1,7 +1,7 @@
 from urlparse import urlparse
-from education.libraries.cse.node import NodeObject
+from education.libraries.cse.node.node import Node
 
 
-class Review(NodeObject):
+class Review(Node):
     def get_url_path(self):
         return urlparse(self.url).path

@@ -1,7 +1,10 @@
 import urllib, urllib2, json
 from django.conf import settings
-from education.libraries.cse.product import Product, App, Website, Game
 from education.core.utils import json_to_obj
+from education.libraries.cse.node.node import Node
+from education.libraries.cse.node import Flow, Review, Product
+# from education.libraries.cse.product import Product, App, Website, Game
+from education.libraries.cse.user import User
 
 
 class CSEAPI(object):
@@ -15,7 +18,6 @@ class CSEAPI(object):
         }
 
         query = dict(query_defaults.items() + query_args.items())
-
         result = urllib2.urlopen('%s%s?%s' % (settings.CSE_API_HOST, endpoint, urllib.urlencode(query)))
         data = result.read()
 
@@ -63,4 +65,40 @@ class CSEAPI(object):
         """
         endpoint = '/v3/educator/reviews/%s' % id
         result = self.request(endpoint)
+
+    def get_users(self, query_args={}):
+        """
+        Get a list of users.
+        """
+        endpoint = '/v3/educator/users'
+        result = self.request(endpoint, query_args)
+
+        users = []
+        for data in result.response:
+            user = User(data)
+            users.append(user)
+
+        return users
+
+    def get_user_by_slug(self, slug):
+        """
+        Get user details by slug.
+        """
+        users = self.get_users({ 'profile_url': slug })
+        if len(users) > 0:
+            return users[0]
+
+    def get_nodes(self, type, query_args={}):
+        """
+        Get a list of nodes.
+        """
+        endpoint = '/v3/educator/%ss' % (Node.TYPE_MAP[type])
+        result = self.request(endpoint, query_args)
+
+        nodes = []
+        for data in result.response:
+            node = Node.instance(type, data)
+            nodes.append(node)
+
+        return nodes
 

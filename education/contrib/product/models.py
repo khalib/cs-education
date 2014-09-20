@@ -1,8 +1,8 @@
 from django.db import models
 from education.core.models import BaseModel, ContentModel, NodeContentModel
-from education.core.models import NodeObject
+from education.core.models import Node
 
-class Product(NodeObject):
+class Product(Node):
     pass
 
 class App(Product):

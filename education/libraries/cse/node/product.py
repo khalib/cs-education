@@ -1,8 +1,8 @@
-from education.libraries.cse.node import NodeObject
-from education.libraries.cse.review import Review
+from education.libraries.cse.node.node import Node
+from education.libraries.cse.node import Review
 
 
-class Product(NodeObject):
+class Product(Node):
     def __init__(self, data=None):
         super(Product, self).__init__(data)
 
@@ -12,7 +12,7 @@ class Product(NodeObject):
 
     @staticmethod
     def instance(class_name, data):
-        module = __import__('education.libraries.cse.product', {}, {}, class_name)
+        module = __import__('education.libraries.cse.node.product', {}, {}, class_name)
         Class = getattr(module, class_name)
         instance = Class(data)
 
