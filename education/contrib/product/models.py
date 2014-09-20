@@ -1,7 +1,23 @@
 from django.db import models
 from education.core.models import BaseModel, ContentModel, NodeContentModel
-from education.contrib.file.models import Image
+from education.core.models import NodeObject
 
+class Product(NodeObject):
+    pass
+
+class App(Product):
+    pass
+
+class Game(Product):
+    pass
+
+class Website(Product):
+    pass
+
+class Movie(Product):
+    pass
+
+"""
 class Product(ContentModel):
     nid = models.IntegerField()
     type = models.CharField(max_length=32)
@@ -32,7 +48,6 @@ class EditorialReview(NodeContentModel):
 class UserReview(ContentModel):
     product = models.OneToOneField(Product)
 
-"""
 DROP TABLE product_editorialreview, product_userreview, product_app, product_game, product_product, product_website;
 
 class Book(BaseModel):

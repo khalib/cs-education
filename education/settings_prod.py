@@ -165,3 +165,13 @@ LOGGING = {
         },
     }
 }
+
+# Education migration settings.
+EDUCATION_MONGODB_HOST = 'localhost'
+EDUCATION_MONGODB_PORT = 27017
+EDUCATION_MONGODB_DATABASE = 'education'
+
+# Common Sense API.
+CSE_API_HOST = 'http://localhost:3000'
+CSE_API_CLIENT_ID = 'edb344e2d319ef67d0cb8b7c3511cdf9'
+CSE_API_APP_ID = '633244f02952fe33bd79c73f05a0ad08'

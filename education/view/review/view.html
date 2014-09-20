@@ -1,0 +1,87 @@
+{% extends 'main/body/full.html' %}
+
+{% block content %}
+  <h1>{{ product.title }}</h1>
+  <p>{{ review.one_liner }}</p>
+  <hr />
+
+  <strong>Learning Rating:</strong> {{ review.learning_rating }}<br />
+
+  <strong>Teacher Rating:</strong> {{ review.user_rating_average }} ({{ review.user_rating_count }})<br />
+
+  <strong>Price:</strong> {{ product.get_pricing_summary|join:', ' }}<br />
+
+  <strong>Grade:</strong> {{ product.get_grade_range }}<br />
+
+  <strong>Platforms:</strong>
+  {% for platform in product.platforms %}
+    {{ platform.name }}{% if not forloop.last %}, {% endif %}
+  {% endfor %}
+  <hr />
+
+  <img src="{{ product.image }}" width="200">
+  <hr />
+
+  <h2>Quick Take</h2>
+  <div>
+    <strong>Pros:</strong><br />
+    {{ review.pros }}
+  </div>
+  <br />
+
+  <div>
+    <strong>Cons:</strong><br />
+    {{ review.cons }}
+  </div>
+  <br />
+
+  <div>
+    <strong>Bottom Line:</strong><br />
+    {{ review.bottom_line }}
+  </div>
+  <br />
+  <hr />
+
+  <h2>Learning Scores</h2>
+  <div>
+    <strong>Engagement:</strong> {{ review.engagement_rating }}<br />
+    {{ review.engagement_description|safe }}
+  </div>
+  <br />
+
+  <div>
+    <strong>Pedagogy:</strong> {{ review.learning_approach_rating }}<br />
+    {{ review.learning_approach_description|safe }}
+  </div>
+  <br />
+
+  <div>
+    <strong>Support:</strong> {{ review.help_rating }}<br />
+    {{ review.help_description|safe }}
+  </div>
+  <br />
+  <hr />
+
+  <h2>Our Review</h2>
+
+  <div>
+    <h3>What's It Like?</h3>
+    {{ review.teachers_need_to_know|safe }}
+  </div>
+
+  <div>
+    <h3>Is It Good For Learning?</h3>
+    {{ review.good_for_learning|safe }}
+  </div>
+
+  <div>
+    <h3>How Can Teachers Use It?</h3>
+    {{ review.what_is_story|safe }}
+  </div>
+
+  <div>
+    This review of {{ product.title }} was written by <a href="{{ review.author.get_profile_url_path }}">{{ review.author.first_name }} {{ review.author.last_name }}</a>
+  </div>
+
+
+{% endblock content %}

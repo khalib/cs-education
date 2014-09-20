@@ -1,3 +1,5 @@
+import types, json
+from collections import namedtuple
 from pprint import pprint
 
 
@@ -13,3 +15,12 @@ def GLog(output, type='output'):
         pprint(output)
     else:
         print(output)
+
+def _json_object_hook(d):
+    return namedtuple('X', d.keys())(*d.values())
+
+def json_to_obj(data):
+    """
+    Converts JSON into an object to the nth degree.
+    """
+    return json.loads(data, object_hook=_json_object_hook)

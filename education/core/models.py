@@ -1,4 +1,6 @@
 from django.db import models
+from education.contrib.user.models import User
+
 
 ACTION_SAVE_INSERT = 'insert'
 ACTION_SAVE_UPDATE = 'update'
@@ -49,3 +51,4 @@ class NodeContentModel(ContentModel):
         abstract = True
 
     nid = models.IntegerField(null=False)
+
